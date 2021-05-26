@@ -1,10 +1,10 @@
-var num_cli=0, round=1;
+var num_cli=0, round=0;
  var obj1,obj2, obj0 ;
  var n=6;
  var img_num = 17
 var imgdir="gif-to-png/";
-var img_format = ".png";
-if(round%2 == 0){round+=1; img_num = 16; img_format = ".jpg";imgdir="2013_11_29/"}
+var img_format = ".jpg";
+if(round%2 == 0){round+=1; img_num = 16;imgdir="2013_11_29/"}
   function initial()
   {
      
