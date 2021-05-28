@@ -1,13 +1,18 @@
-var num_cli=0, round=0;
+var num_cli=0;
+
  var obj1,obj2, obj0 ;
  var n=6;
  var img_num = 17
 var imgdir="gif-to-png/";
 var img_format = ".jpg";
-if(round%2 == 0){round+=1; img_num = 16;imgdir="2013_11_29/"}
+var round = Number(sessionStorage.getItem('round'));
+console.log('8888888888888888888888888888888888')
+console.log(sessionStorage.getItem('round'))
+console.log(round)
+if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
   function initial()
   {
-     
+    
      document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />");
      document.write("<div  id='debug_info'><h1 >  How to play </h1></div>");
      document.write("<div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines - Each level will limit time, game over when time runs out </h3></div>");
@@ -38,21 +43,21 @@ if(round%2 == 0){round+=1; img_num = 16;imgdir="2013_11_29/"}
         // console.log(item)
       document.addEventListener('click',function(e){
           
-          console.log('===================')
-          console.log(e.target.id)
-          console.log('===============')
+        //   console.log('===================')
+        //   console.log(e.target.id)
+        //   console.log('===============')
           //console.log(e)
           row=parseInt(e.target.id/(n+2));
           col=e.target.id%(n+2);
-          console.log(row, col)
-          console.log(e.target.src)
-          console.log(obj0.src)
+        //   console.log(row, col)
+        //   console.log(e.target.src)
+        //   console.log(obj0.src)
 
           if (e.target.src == obj0.src){return;}
           // check how many times click
 
-          console.log('==================22222')
-                   console.log(num_cli)
+          
+                //    console.log(num_cli)
           if(num_cli==0)//the click is first time
             {
                  obj1=e.target;
@@ -162,7 +167,19 @@ if(round%2 == 0){round+=1; img_num = 16;imgdir="2013_11_29/"}
         }
     }
    if(flagGameOver==1)
-   {alert("Cogratulations!");retun ;}
+   {alert("Cogratulations!");
+   round=round+1;
+   sessionStorage.removeItem('round');
+   sessionStorage.setItem('round', round);
+   console.log('9999999999999999999999999999999999999')
+   console.log(sessionStorage.getItem('round'))
+   
+
+// If you are refreshing after an onclick then you'll need to return false directly after
+
+location.reload();
+return false;
+   }
      //not successful yet, check if the canvas is healthy (there exist images can be cleared)
     flagGameHealthy=0;
      for(i=1;i<=n;i++)
