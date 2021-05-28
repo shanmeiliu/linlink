@@ -70,8 +70,8 @@ if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
                     if (obj2 == obj1)
                       return;
                    res=judgeSame(obj1,obj2);
-                   
-                   alert(res);
+                   if (res == 0)
+                           { alert(res); }
                    //soundRespond(res);
                    if(res==1)
                    {
