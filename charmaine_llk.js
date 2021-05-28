@@ -213,7 +213,7 @@ return false;
      }
      if(flagGameHealthy==0)
      {
-         alert("No more inages can be cleared, NOW SHUFFLE");
+         //alert("No more inages can be cleared, NOW SHUFFLE");
          shuffle();
          judgeHealth();       
      }
