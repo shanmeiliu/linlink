@@ -10,78 +10,115 @@ console.log('8888888888888888888888888888888888')
 console.log(sessionStorage.getItem('round'))
 console.log(round)
 if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
-  function initial()
-  {
+function initial()
+{
     
-     document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />");
-     document.write("<div  id='debug_info'><h1 >  How to play </h1></div>");
-     document.write("<div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines - Each level will limit time, game over when time runs out </h3></div>");
-      document.write("<div  id='llk_layout'>");
-     var i, j;
-      //generate linlink layout
-      for(i=0;i<=n+1;i++)
-      {
-         for(j=0;j<=n+1;j++)
-          {
-              k=parseInt(img_num*Math.random());
-              imgpath=imgdir+"charmaine_"+k+img_format;
-              img_id = (i*(n+2)+j);
-             str_element="<img id="+img_id+" src="+imgpath+" class='llk_layout_img'/>";
-              if(i==0||j==0||i==n+1||j==n+1)
-                  str_element="<img id="+(i*(n+2)+j)+" src="+imgdir+"image.png width=0 height=0 dispaly='hidden'/>";
-              document.write(str_element);
-          }
-          document.write("<br/>");
-          
-      }
+    document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />");
+    document.write("<div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2>");
+    document.write("<div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines - Each level will limit time, game over when time runs out </h3></div>");
+    document.write("<div  id='llk_layout'>");
+    var i, j;
+    //generate linlink layout
+    for(i=0;i<=n+1;i++)
+    {
+        for(j=0;j<=n+1;j++)
+        {
+            k=parseInt(img_num*Math.random());
+            imgpath=imgdir+"charmaine_"+k+img_format;
+            img_id = (i*(n+2)+j);
+            str_element="<img id="+img_id+" src="+imgpath+" class='llk_layout_img'/>";
+            if(i==0||j==0||i==n+1||j==n+1)
+                str_element="<img id="+(i*(n+2)+j)+" src="+imgdir+"image.png width=0 height=0 dispaly='hidden'/>";
+            document.write(str_element);
+        }
+        document.write("<br/>");
+        
+    }
     obj0=document.getElementById(0);
-      console.log('000000000000000')
-      console.log(obj0.src)
-      
-        // var item = document.getElementsByClassName("llk_layout_img").onclick;
-        // console.log('=======================')
-        // console.log(item)
-      document.addEventListener('click',function(e){
-          
+    console.log('000000000000000')
+    console.log(obj0.src)
+    
+    // var item = document.getElementsByClassName("llk_layout_img").onclick;
+    // console.log('=======================')
+    // console.log(item)
+    document.addEventListener('click',function(e){
+        start()
         //   console.log('===================')
         //   console.log(e.target.id)
         //   console.log('===============')
-          //console.log(e)
-          row=parseInt(e.target.id/(n+2));
-          col=e.target.id%(n+2);
+        //console.log(e)
+        row=parseInt(e.target.id/(n+2));
+        col=e.target.id%(n+2);
         //   console.log(row, col)
         //   console.log(e.target.src)
         //   console.log(obj0.src)
 
-          if (e.target.src == obj0.src){return;}
-          // check how many times click
+        if (e.target.src == obj0.src){return;}
+        // check how many times click
 
-          
-                //    console.log(num_cli)
-          if(num_cli==0)//the click is first time
+        
+            //    console.log(num_cli)
+        if(num_cli==0)//the click is first time
+        {
+                obj1=e.target;
+                num_cli=1;
+        }
+        else//the click is second time 
+        {
+            obj2=e.target;
+            num_cli = 0;
+            if (obj2 == obj1)
+                return;
+            res=judgeSame(obj1,obj2);
+            if (res == 0)
+                    { alert(res); }
+            //soundRespond(res);
+            if(res==1)
             {
-                 obj1=e.target;
-                    num_cli=1;
-                }
-            else//the click is second time 
-                {
-                    obj2=e.target;
-                    num_cli = 0;
-                    if (obj2 == obj1)
-                      return;
-                   res=judgeSame(obj1,obj2);
-                   if (res == 0)
-                           { alert(res); }
-                   //soundRespond(res);
-                   if(res==1)
-                   {
-                        obj1.src=obj0.src;
-                       obj2.src=obj0.src;//"p.jpg";
-                   }
-                   //judgeHealth();
-               }
-               judgeHealth();
-      })
+                obj1.src=obj0.src;
+                obj2.src=obj0.src;//"p.jpg";
+            }
+            //judgeHealth();
+        }
+        judgeHealth();
+    })
+
+    // Number of seconds for countdown
+    countdown = 300;
+
+    function update_timer() {
+        seconds = countdown % 60;
+        minutes = (countdown - seconds) / 60;
+
+        sec = (seconds + 100)+"";
+
+        $("#timer").text(minutes + ":" + sec.substr(1,2) )
+    }
+
+    update_timer();
+
+    started = false;
+
+    function start() {
+        if (started)
+            return;
+
+        started = true;
+
+        setInterval(function() {
+            if (countdown == 0)
+            {
+                alert("You ran out of time :(");
+                location.reload();
+            }
+
+            update_timer();
+            
+            countdown = countdown - 1;
+
+            
+        }, 1000)
+    }
       
       //onclick(console.log('===================erere==='+ img_id))
       //声音
