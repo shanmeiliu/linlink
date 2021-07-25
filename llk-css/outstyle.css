@@ -1,5 +1,10 @@
 p{color: red; border: thick solid groove;}
-.img_selected{}
+.llk_layout_img.img_selected{
+    background-color: red;
+    margin: 0px;
+    padding: 0px;
+    border: 4px solid red;
+}
 img:hover{
     background-color: #00f;
 
@@ -17,3 +22,25 @@ img:hover{
     width: 950px;
     border: thick solid #000;
 }
+.split {
+    height: 100%;
+    width: 30%;
+    
+    /* z-index: 1; */
+    top: 0;
+    overflow-x: hidden;
+  
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  
+  .left {
+    left: 0;
+    float: left;
+    background-color: burlywood
+  }
+  /* .right {
+    float: right;
+    right: 0;
+    background-color: red;
+  } */

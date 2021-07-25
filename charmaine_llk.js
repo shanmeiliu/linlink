@@ -11,12 +11,13 @@ console.log(sessionStorage.getItem('round'))
 console.log(round)
 if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
 function initial()
-{
-    
-    document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />");
-    document.write("<div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2>");
-    document.write("<div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines - Each level will limit time, game over when time runs out </h3></div>");
-    document.write("<div  id='llk_layout'>");
+{   document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />")
+    document.write("<div class='split left'>")
+    document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3></div> ");
+    document.write("</div>")
+    document.write("<div class='split right>")
+    document.write("<div  id='llk_layout'></div>");
+    document.write("</div>")
     var i, j;
     //generate linlink layout
     for(i=0;i<=n+1;i++)
@@ -28,12 +29,13 @@ function initial()
             img_id = (i*(n+2)+j);
             str_element="<img id="+img_id+" src="+imgpath+" class='llk_layout_img'/>";
             if(i==0||j==0||i==n+1||j==n+1)
-                str_element="<img id="+(i*(n+2)+j)+" src="+imgdir+"image.png width=0 height=0 dispaly='hidden'/>";
+                str_element="<img id="+(i*(n+2)+j)+" src="+imgdir+"image.png width=0 height=0 displays='hidden'/>";
             document.write(str_element);
         }
         document.write("<br/>");
         
     }
+    
     obj0=document.getElementById(0);
     console.log('000000000000000')
     console.log(obj0.src)
@@ -48,6 +50,7 @@ function initial()
         //   console.log('===============')
         //console.log(e)
         row=parseInt(e.target.id/(n+2));
+        
         col=e.target.id%(n+2);
         //   console.log(row, col)
         //   console.log(e.target.src)
@@ -56,22 +59,31 @@ function initial()
         if (e.target.src == obj0.src){return;}
         // check how many times click
 
+        if (!$(e.target).is('img'))
+        {
+            num_cli = 0;
+            $(".img_selected").removeClass("img_selected");
+            return;
+        }
         
             //    console.log(num_cli)
         if(num_cli==0)//the click is first time
         {
                 obj1=e.target;
                 num_cli=1;
+                $(e.target).addClass("img_selected");
         }
         else//the click is second time 
         {
+            $(".img_selected").removeClass("img_selected");
             obj2=e.target;
             num_cli = 0;
             if (obj2 == obj1)
                 return;
             res=judgeSame(obj1,obj2);
             if (res == 0)
-                    { alert(res); }
+                    { 
+                        alert("Sorry they don't match in 3 straight lines."); }
             //soundRespond(res);
             if(res==1)
             {
@@ -133,7 +145,8 @@ function initial()
 //      document.getElementById("mybgsound").volume=0.2;
      // obj0=document.getElementById(0);  
       //document.write("<embed height='150' width='310' src='llk-music/1.mp3' />");
-  }
+      
+    }
   //处理点击事件
 //   function myclick(img_id)
 //   { 
@@ -187,6 +200,7 @@ function initial()
   }
   function judgeHealth()
  {
+     
      
       flagGameOver=1;
      for(i=1;i<=n;i++)
