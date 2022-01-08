@@ -23,15 +23,17 @@ img:hover{
     border: thick solid #000;
 }
 .split {
-    height: 100%;
+    
     width: 20%;
     
     /* z-index: 1; */
     top: 0;
     overflow-x: hidden;
-  
+    padding-top: 10%;
+    padding-bottom: 20%;
     padding-left: 2%;
     padding-right: 2%;
+
   }
   
   .left {
