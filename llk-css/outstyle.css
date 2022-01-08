@@ -13,7 +13,7 @@ img:hover{
     margin: 2px;
     padding: 1px;
     height: auto;
-    width: 150px;
+    width: 10%;
     border: thin solid #00f;
 }
 #llk_layout{
@@ -24,7 +24,7 @@ img:hover{
 }
 .split {
     height: 100%;
-    width: 30%;
+    width: 20%;
     
     /* z-index: 1; */
     top: 0;
