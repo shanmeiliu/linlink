@@ -13,7 +13,7 @@ if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
 function initial()
 {   document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />")
     document.write("<div class='split left'>")
-    document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >    - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3></div> ");
+    document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >  - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3> <a href ='https://www.youtube.com/watch?v=7d5l5o8NzNc'>Here is a video on how to play</a></div> ");
     document.write("</div>")
     document.write("<div class='split right>")
     document.write("<div  id='llk_layout'></div>");
