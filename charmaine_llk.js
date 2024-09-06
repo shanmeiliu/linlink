@@ -3,15 +3,33 @@ var num_cli=0;
  var obj1,obj2, obj0 ;
  var n=6;
  var img_num = 17
+ var soundEnabled = true; // Initially sound is enabled
 var imgdir="gif-to-png/";
 var img_format = ".jpg";
 var round = Number(sessionStorage.getItem('round'));
+var clickSound = new Audio('llk-sound/678248mouse-click-sound.mp3');
 console.log('8888888888888888888888888888888888')
 console.log(sessionStorage.getItem('round'))
 console.log(round)
 if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
 function initial()
 {   document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />")
+    // Add sound toggle button
+    document.write("<button id='toggleSound' style='position: absolute; top: 10px; left: 10px;'>Disable Sound</button>");    
+    // Add the event listener after creating the button
+    setTimeout(function() {
+        var toggleButton = document.getElementById('toggleSound');
+    
+        toggleButton.addEventListener('click', function() {
+            soundEnabled = !soundEnabled; // Toggle sound state
+            
+            if (soundEnabled) {
+                toggleButton.innerText = 'Disable Sound'; // Update button text
+            } else {
+                toggleButton.innerText = 'Enable Sound';
+            }
+        });
+    }, 0);
     document.write("<div class='split left'>")
     document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >  - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3> <a href ='https://www.youtube.com/watch?v=7d5l5o8NzNc'>Here is a video on how to play</a></div> ");
     document.write("</div>")
@@ -45,6 +63,10 @@ function initial()
     // console.log(item)
     document.addEventListener('click',function(e){
         start()
+        // Play click sound
+        if ($(e.target).is('img') && soundEnabled) {
+            clickSound.play();
+        }
         //   console.log('===================')
         //   console.log(e.target.id)
         //   console.log('===============')
@@ -82,7 +104,7 @@ function initial()
                 return;
             res=judgeSame(obj1,obj2);
             if (res == 0)
-                    { 
+                    {  
                         alert("Sorry they don't match in 3 straight lines."); }
             //soundRespond(res);
             if(res==1)
@@ -95,6 +117,7 @@ function initial()
         judgeHealth();
     })
 
+    
     // Number of seconds for countdown
     countdown = 300;
 
