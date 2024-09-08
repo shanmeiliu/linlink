@@ -7,7 +7,7 @@ var num_cli=0;
 var imgdir="gif-to-png/";
 var img_format = ".jpg";
 var round = Number(sessionStorage.getItem('round'));
-var clickSound = new Audio('llk-sound/678248mouse-click-sound.mp3');
+var clickSound = new Audio('llk-sound/678248mouse-click-sound-AudioTrimmer.mp3');
 console.log('8888888888888888888888888888888888')
 console.log(sessionStorage.getItem('round'))
 console.log(round)
