@@ -4,14 +4,13 @@ var num_cli=0;
  var n=6;
  var img_num = 17
  var soundEnabled = true; // Initially sound is enabled
-var imgdir="gif-to-png/";
+var imgdir="image-set1/";
 var img_format = ".jpg";
 var round = Number(sessionStorage.getItem('round'));
 var clickSound = new Audio('llk-sound/678248mouse-click-sound-AudioTrimmer.mp3');
-console.log('8888888888888888888888888888888888')
 console.log(sessionStorage.getItem('round'))
 console.log(round)
-if(round%2 == 0){img_num = 16;imgdir="2013_11_29/"}
+if(round%2 == 0){img_num = 16;imgdir="image-set2/"}
 function initial()
 {   document.write("<link href='llk-css/outstyle.css' rel='stylesheet' type='text/css' />")
     // Add sound toggle button
@@ -31,7 +30,7 @@ function initial()
         });
     }, 0);
     document.write("<div class='split left'>")
-    document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >  - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3> <a href ='https://www.youtube.com/watch?v=7d5l5o8NzNc'>Here is a video on how to play</a></div> ");
+    document.write(" <div  id='debug_info'><h1 ><span id='timer'></span> - How to play</h2> <div  id='game_info'><h3 >  - Connect 2 similar images with up to 3 straight lines </h3><h3> - Each level will limit time, game over when time runs out </h3> <a href ='https://drive.google.com/file/d/1OuHDLE8Lr1F_auysqus3i6GC4mWHL-un/view?usp=sharing'>Here is a video on how to play</a></div> ");
     document.write("</div>")
     document.write("<div class='split right>")
     document.write("<div  id='llk_layout'></div>");
